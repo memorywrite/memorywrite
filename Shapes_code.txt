@@ -1,0 +1,110 @@
+// ===================== Файл: Shapes.cs (опис класів) =====================
+using System;
+
+namespace ShapesApp
+{
+    // Базовий клас "Прямокутний трикутник"
+    class RightTriangle
+    {
+        // Поля - довжини сторін (катети a, b)
+        protected double a;
+        protected double b;
+
+        public RightTriangle(double a, double b)
+        {
+            this.a = a;
+            this.b = b;
+        }
+
+        // Гіпотенуза
+        public double GetC()
+        {
+            return Math.Sqrt(a * a + b * b);
+        }
+
+        // Периметр
+        public virtual double GetPerimeter()
+        {
+            return a + b + GetC();
+        }
+
+        // Площа
+        public virtual double GetArea()
+        {
+            return a * b / 2;
+        }
+
+        // Інформація про фігуру
+        public virtual void Show()
+        {
+            Console.WriteLine("Прямокутний трикутник: a = " + a + ", b = " + b +
+                              ", c = " + Math.Round(GetC(), 2));
+            Console.WriteLine("  Периметр = " + Math.Round(GetPerimeter(), 2));
+            Console.WriteLine("  Площа    = " + Math.Round(GetArea(), 2));
+        }
+    }
+
+    // Клас-нащадок "Прямокутник"
+    class Rectangle : RightTriangle
+    {
+        public Rectangle(double a, double b) : base(a, b)
+        {
+        }
+
+        // Перевизначений периметр
+        public override double GetPerimeter()
+        {
+            return 2 * (a + b);
+        }
+
+        // Перевизначена площа
+        public override double GetArea()
+        {
+            return a * b;
+        }
+
+        // Перевизначений вивід інформації
+        public override void Show()
+        {
+            Console.WriteLine("Прямокутник: a = " + a + ", b = " + b);
+            Console.WriteLine("  Периметр = " + Math.Round(GetPerimeter(), 2));
+            Console.WriteLine("  Площа    = " + Math.Round(GetArea(), 2));
+        }
+    }
+}
+
+
+// ===================== Файл: Program.cs (головна програма) =====================
+using System;
+using System.Text;
+
+namespace ShapesApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+
+            // Масив фігур: 2 трикутники та 3 прямокутники
+            RightTriangle[] shapes = new RightTriangle[5];
+            shapes[0] = new RightTriangle(3, 4);
+            shapes[1] = new RightTriangle(6, 8);
+            shapes[2] = new Rectangle(2, 5);
+            shapes[3] = new Rectangle(4, 4);
+            shapes[4] = new Rectangle(7, 3);
+
+            Console.WriteLine("Інформація про фігури:");
+            Console.WriteLine();
+
+            for (int i = 0; i < shapes.Length; i++)
+            {
+                Console.Write((i + 1) + ". ");
+                shapes[i].Show();
+                Console.WriteLine();
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
