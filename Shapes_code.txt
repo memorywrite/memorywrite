@@ -7,12 +7,6 @@ namespace ConsoleApp3
         public double a;
         public double b;
 
-        public RightTriangle(double x, double y)
-        {
-            a = x;
-            b = y;
-        }
-
         public double Gipotenuza()
         {
             return Math.Sqrt(a * a + b * b);
@@ -39,10 +33,6 @@ namespace ConsoleApp3
 
     class Rectangle : RightTriangle
     {
-        public Rectangle(double x, double y) : base(x, y)
-        {
-        }
-
         public new double Perimeter()
         {
             return 2 * (a + b);
@@ -74,11 +64,11 @@ namespace ConsoleApp3
             Console.OutputEncoding = Encoding.UTF8;
 
             RightTriangle[] shapes = new RightTriangle[5];
-            shapes[0] = new RightTriangle(3, 4);
-            shapes[1] = new RightTriangle(6, 8);
-            shapes[2] = new Rectangle(2, 5);
-            shapes[3] = new Rectangle(4, 4);
-            shapes[4] = new Rectangle(7, 3);
+            shapes[0] = new RightTriangle { a = 3, b = 4 };
+            shapes[1] = new RightTriangle { a = 6, b = 8 };
+            shapes[2] = new Rectangle { a = 2, b = 5 };
+            shapes[3] = new Rectangle { a = 4, b = 4 };
+            shapes[4] = new Rectangle { a = 7, b = 3 };
 
             Console.WriteLine("Інформація про фігури:");
             Console.WriteLine();
