@@ -17,19 +17,19 @@ namespace ShapesApp
         }
 
         // Гіпотенуза
-        public double GetC()
+        public double Gipotenuza()
         {
             return Math.Sqrt(a * a + b * b);
         }
 
         // Периметр
-        public virtual double GetPerimeter()
+        public virtual double Perimeter()
         {
-            return a + b + GetC();
+            return a + b + Gipotenuza();
         }
 
         // Площа
-        public virtual double GetArea()
+        public virtual double Area()
         {
             return a * b / 2;
         }
@@ -38,9 +38,9 @@ namespace ShapesApp
         public virtual void Show()
         {
             Console.WriteLine("Прямокутний трикутник: a = " + a + ", b = " + b +
-                              ", c = " + Math.Round(GetC(), 2));
-            Console.WriteLine("  Периметр = " + Math.Round(GetPerimeter(), 2));
-            Console.WriteLine("  Площа    = " + Math.Round(GetArea(), 2));
+                              ", c = " + Math.Round(Gipotenuza(), 2));
+            Console.WriteLine("  Периметр = " + Math.Round(Perimeter(), 2));
+            Console.WriteLine("  Площа    = " + Math.Round(Area(), 2));
         }
     }
 
@@ -52,13 +52,13 @@ namespace ShapesApp
         }
 
         // Перевизначений периметр
-        public override double GetPerimeter()
+        public override double Perimeter()
         {
             return 2 * (a + b);
         }
 
         // Перевизначена площа
-        public override double GetArea()
+        public override double Area()
         {
             return a * b;
         }
@@ -67,8 +67,8 @@ namespace ShapesApp
         public override void Show()
         {
             Console.WriteLine("Прямокутник: a = " + a + ", b = " + b);
-            Console.WriteLine("  Периметр = " + Math.Round(GetPerimeter(), 2));
-            Console.WriteLine("  Площа    = " + Math.Round(GetArea(), 2));
+            Console.WriteLine("  Периметр = " + Math.Round(Perimeter(), 2));
+            Console.WriteLine("  Площа    = " + Math.Round(Area(), 2));
         }
     }
 }
