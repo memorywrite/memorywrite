@@ -1,6 +1,6 @@
 using System;
 
-namespace ShapesApp
+namespace ConsoleApp3
 {
     class RightTriangle
     {
@@ -65,7 +65,7 @@ namespace ShapesApp
 using System;
 using System.Text;
 
-namespace ShapesApp
+namespace ConsoleApp3
 {
     class Program
     {
