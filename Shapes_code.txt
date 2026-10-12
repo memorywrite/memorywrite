@@ -7,13 +7,13 @@ namespace ShapesApp
     class RightTriangle
     {
         // Поля - довжини сторін (катети a, b)
-        protected double a;
-        protected double b;
+        public double a;
+        public double b;
 
-        public RightTriangle(double a, double b)
+        public RightTriangle(double x, double y)
         {
-            this.a = a;
-            this.b = b;
+            a = x;
+            b = y;
         }
 
         // Гіпотенуза
@@ -47,7 +47,7 @@ namespace ShapesApp
     // Клас-нащадок "Прямокутник"
     class Rectangle : RightTriangle
     {
-        public Rectangle(double a, double b) : base(a, b)
+        public Rectangle(double x, double y) : base(x, y)
         {
         }
 
