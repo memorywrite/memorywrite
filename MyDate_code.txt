@@ -1,0 +1,76 @@
+==================== FileName.cs ====================
+
+using System;
+
+namespace ConsoleApp3
+{
+    class MyDate
+    {
+        public int day;
+        public int month;
+        public int year;
+
+        public MyDate()
+        {
+            day = 25;
+            month = 9;
+            year = 2026;
+        }
+
+        public MyDate(int d, int m, int y)
+        {
+            day = d;
+            month = m;
+            year = y;
+        }
+
+        public void Show()
+        {
+            Console.WriteLine(day.ToString("00") + "/" + month.ToString("00") + "/" + year.ToString("0000"));
+        }
+
+        public static MyDate operator ++(MyDate date)
+        {
+            return new MyDate(date.day, date.month, date.year + 1);
+        }
+
+        public static MyDate operator +(MyDate date, int n)
+        {
+            int total = date.month - 1 + n;
+            int m = total % 12 + 1;
+            int y = date.year + total / 12;
+            return new MyDate(date.day, m, y);
+        }
+    }
+}
+
+==================== Program.cs ====================
+
+using System;
+
+namespace ConsoleApp3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MyDate date1 = new MyDate();
+            Console.Write("Дата 1: ");
+            date1.Show();
+
+            MyDate date2 = new MyDate(5, 3, 2024);
+            Console.Write("Дата 2: ");
+            date2.Show();
+
+            date1++;
+            Console.Write("Дата 1 після ++: ");
+            date1.Show();
+
+            MyDate date3 = date2 + 11;
+            Console.Write("Дата 2 + 11 місяців: ");
+            date3.Show();
+
+            Console.ReadKey();
+        }
+    }
+}
