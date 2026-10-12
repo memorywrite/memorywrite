@@ -1,0 +1,209 @@
+==================== FileName.cs (ConsoleApp3) ====================
+
+using System;
+
+namespace ConsoleApp3
+{
+    class Equation
+    {
+        public double a;
+        public double b;
+        public double c;
+
+        public double Discriminant()
+        {
+            return b * b - 4 * a * c;
+        }
+
+        public string Solve()
+        {
+            if (a == 0)
+            {
+                return "Це не квадратне рівняння (a = 0)";
+            }
+
+            double d = Discriminant();
+
+            if (d < 0)
+            {
+                return "D = " + d + ", коренів немає";
+            }
+
+            if (d == 0)
+            {
+                double x = -b / (2 * a);
+                return "D = 0, один корінь: x = " + Math.Round(x, 2);
+            }
+
+            double x1 = (-b + Math.Sqrt(d)) / (2 * a);
+            double x2 = (-b - Math.Sqrt(d)) / (2 * a);
+            return "D = " + d + ", x1 = " + Math.Round(x1, 2) + ", x2 = " + Math.Round(x2, 2);
+        }
+
+        public string Show()
+        {
+            return a + "x^2 + " + b + "x + " + c + " = 0";
+        }
+    }
+}
+
+==================== Program.cs (ConsoleApp3) ====================
+
+using System;
+using System.Text;
+
+namespace ConsoleApp3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+
+            Equation e = new Equation();
+
+            Console.Write("Введіть a: ");
+            e.a = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Введіть b: ");
+            e.b = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Введіть c: ");
+            e.c = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine();
+            Console.WriteLine("Рівняння: " + e.Show());
+            Console.WriteLine(e.Solve());
+
+            Console.ReadKey();
+        }
+    }
+}
+
+==================== FileName.cs (WindowsFormsApp1) ====================
+
+using System;
+
+namespace WindowsFormsApp1
+{
+    class Equation
+    {
+        public double a;
+        public double b;
+        public double c;
+
+        public double Discriminant()
+        {
+            return b * b - 4 * a * c;
+        }
+
+        public string Solve()
+        {
+            if (a == 0)
+            {
+                return "Це не квадратне рівняння (a = 0)";
+            }
+
+            double d = Discriminant();
+
+            if (d < 0)
+            {
+                return "D = " + d + ", коренів немає";
+            }
+
+            if (d == 0)
+            {
+                double x = -b / (2 * a);
+                return "D = 0, один корінь: x = " + Math.Round(x, 2);
+            }
+
+            double x1 = (-b + Math.Sqrt(d)) / (2 * a);
+            double x2 = (-b - Math.Sqrt(d)) / (2 * a);
+            return "D = " + d + ", x1 = " + Math.Round(x1, 2) + ", x2 = " + Math.Round(x2, 2);
+        }
+
+        public string Show()
+        {
+            return a + "x^2 + " + b + "x + " + c + " = 0";
+        }
+    }
+}
+
+==================== Form1.cs (WindowsFormsApp1) ====================
+
+using System;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp1
+{
+    public partial class Form1 : Form
+    {
+        TextBox textA = new TextBox();
+        TextBox textB = new TextBox();
+        TextBox textC = new TextBox();
+        Button button = new Button();
+        Label result = new Label();
+
+        public Form1()
+        {
+            InitializeComponent();
+
+            Text = "Квадратне рівняння";
+            Width = 400;
+            Height = 250;
+
+            Label labelA = new Label();
+            labelA.Text = "a =";
+            labelA.Left = 20;
+            labelA.Top = 20;
+            labelA.Width = 30;
+
+            Label labelB = new Label();
+            labelB.Text = "b =";
+            labelB.Left = 20;
+            labelB.Top = 50;
+            labelB.Width = 30;
+
+            Label labelC = new Label();
+            labelC.Text = "c =";
+            labelC.Left = 20;
+            labelC.Top = 80;
+            labelC.Width = 30;
+
+            textA.Left = 60;
+            textA.Top = 20;
+            textB.Left = 60;
+            textB.Top = 50;
+            textC.Left = 60;
+            textC.Top = 80;
+
+            button.Text = "Розв'язати";
+            button.Left = 60;
+            button.Top = 110;
+            button.Width = 100;
+            button.Click += button_Click;
+
+            result.Left = 20;
+            result.Top = 150;
+            result.Width = 350;
+            result.Height = 50;
+
+            Controls.Add(labelA);
+            Controls.Add(labelB);
+            Controls.Add(labelC);
+            Controls.Add(textA);
+            Controls.Add(textB);
+            Controls.Add(textC);
+            Controls.Add(button);
+            Controls.Add(result);
+        }
+
+        private void button_Click(object sender, EventArgs e)
+        {
+            Equation eq = new Equation();
+            eq.a = Convert.ToDouble(textA.Text);
+            eq.b = Convert.ToDouble(textB.Text);
+            eq.c = Convert.ToDouble(textC.Text);
+
+            result.Text = "Рівняння: " + eq.Show() + "\n" + eq.Solve();
+        }
+    }
+}
