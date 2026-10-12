@@ -1,12 +1,9 @@
-// ===================== Файл: Shapes.cs (опис класів) =====================
 using System;
 
 namespace ShapesApp
 {
-    // Базовий клас "Прямокутний трикутник"
     class RightTriangle
     {
-        // Поля - довжини сторін (катети a, b)
         public double a;
         public double b;
 
@@ -16,25 +13,21 @@ namespace ShapesApp
             b = y;
         }
 
-        // Гіпотенуза
         public double Gipotenuza()
         {
             return Math.Sqrt(a * a + b * b);
         }
 
-        // Периметр
         public double Perimeter()
         {
             return a + b + Gipotenuza();
         }
 
-        // Площа
         public double Area()
         {
             return a * b / 2;
         }
 
-        // Інформація про фігуру
         public void Show()
         {
             Console.WriteLine("Прямокутний трикутник: a = " + a + ", b = " + b +
@@ -44,26 +37,22 @@ namespace ShapesApp
         }
     }
 
-    // Клас-нащадок "Прямокутник"
     class Rectangle : RightTriangle
     {
         public Rectangle(double x, double y) : base(x, y)
         {
         }
 
-        // Новий периметр для прямокутника
         public new double Perimeter()
         {
             return 2 * (a + b);
         }
 
-        // Нова площа для прямокутника
         public new double Area()
         {
             return a * b;
         }
 
-        // Новий вивід інформації
         public new void Show()
         {
             Console.WriteLine("Прямокутник: a = " + a + ", b = " + b);
@@ -73,8 +62,6 @@ namespace ShapesApp
     }
 }
 
-
-// ===================== Файл: Program.cs (головна програма) =====================
 using System;
 using System.Text;
 
@@ -86,7 +73,6 @@ namespace ShapesApp
         {
             Console.OutputEncoding = Encoding.UTF8;
 
-            // Масив фігур: 2 трикутники та 3 прямокутники
             RightTriangle[] shapes = new RightTriangle[5];
             shapes[0] = new RightTriangle(3, 4);
             shapes[1] = new RightTriangle(6, 8);
@@ -100,15 +86,7 @@ namespace ShapesApp
             for (int i = 0; i < shapes.Length; i++)
             {
                 Console.Write((i + 1) + ". ");
-                if (shapes[i] is Rectangle)
-                {
-                    Rectangle r = (Rectangle)shapes[i];
-                    r.Show();
-                }
-                else
-                {
-                    shapes[i].Show();
-                }
+                shapes[i].Show();
                 Console.WriteLine();
             }
 
