@@ -47,6 +47,7 @@ namespace ConsoleApp3
 ==================== Program.cs ====================
 
 using System;
+using System.Text;
 
 namespace ConsoleApp3
 {
@@ -54,6 +55,8 @@ namespace ConsoleApp3
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
+
             MyDate date1 = new MyDate();
             Console.Write("Дата 1: ");
             date1.Show();
