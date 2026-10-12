@@ -2,7 +2,7 @@ using System;
 
 namespace ConsoleApp3
 {
-    class RightTriangle
+    class Triangle
     {
         public double a;
         public double b;
@@ -31,7 +31,7 @@ namespace ConsoleApp3
         }
     }
 
-    class Rectangle : RightTriangle
+    class Rectangle : Triangle
     {
         public new double Perimeter()
         {
@@ -63,20 +63,20 @@ namespace ConsoleApp3
         {
             Console.OutputEncoding = Encoding.UTF8;
 
-            RightTriangle[] shapes = new RightTriangle[5];
-            shapes[0] = new RightTriangle { a = 3, b = 4 };
-            shapes[1] = new RightTriangle { a = 6, b = 8 };
-            shapes[2] = new Rectangle { a = 2, b = 5 };
-            shapes[3] = new Rectangle { a = 4, b = 4 };
-            shapes[4] = new Rectangle { a = 7, b = 3 };
+            Triangle[] arr = new Triangle[5];
+            arr[0] = new Triangle { a = 3, b = 4 };
+            arr[1] = new Triangle { a = 6, b = 8 };
+            arr[2] = new Rectangle { a = 2, b = 5 };
+            arr[3] = new Rectangle { a = 4, b = 4 };
+            arr[4] = new Rectangle { a = 7, b = 3 };
 
             Console.WriteLine("Інформація про фігури:");
             Console.WriteLine();
 
-            for (int i = 0; i < shapes.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
                 Console.Write((i + 1) + ". ");
-                shapes[i].Show();
+                arr[i].Show();
                 Console.WriteLine();
             }
 
