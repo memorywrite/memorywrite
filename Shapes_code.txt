@@ -23,19 +23,19 @@ namespace ShapesApp
         }
 
         // Периметр
-        public virtual double Perimeter()
+        public double Perimeter()
         {
             return a + b + Gipotenuza();
         }
 
         // Площа
-        public virtual double Area()
+        public double Area()
         {
             return a * b / 2;
         }
 
         // Інформація про фігуру
-        public virtual void Show()
+        public void Show()
         {
             Console.WriteLine("Прямокутний трикутник: a = " + a + ", b = " + b +
                               ", c = " + Math.Round(Gipotenuza(), 2));
@@ -51,20 +51,20 @@ namespace ShapesApp
         {
         }
 
-        // Перевизначений периметр
-        public override double Perimeter()
+        // Новий периметр для прямокутника
+        public new double Perimeter()
         {
             return 2 * (a + b);
         }
 
-        // Перевизначена площа
-        public override double Area()
+        // Нова площа для прямокутника
+        public new double Area()
         {
             return a * b;
         }
 
-        // Перевизначений вивід інформації
-        public override void Show()
+        // Новий вивід інформації
+        public new void Show()
         {
             Console.WriteLine("Прямокутник: a = " + a + ", b = " + b);
             Console.WriteLine("  Периметр = " + Math.Round(Perimeter(), 2));
@@ -100,7 +100,15 @@ namespace ShapesApp
             for (int i = 0; i < shapes.Length; i++)
             {
                 Console.Write((i + 1) + ". ");
-                shapes[i].Show();
+                if (shapes[i] is Rectangle)
+                {
+                    Rectangle r = (Rectangle)shapes[i];
+                    r.Show();
+                }
+                else
+                {
+                    shapes[i].Show();
+                }
                 Console.WriteLine();
             }
 
