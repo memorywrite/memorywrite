@@ -1,0 +1,171 @@
+==================== FileName.cs ====================
+
+using System;
+
+namespace WinFormsApp1
+{
+    class Triangle
+    {
+        public double a;
+        public double b;
+
+        public double Gipotenuza()
+        {
+            return Math.Sqrt(a * a + b * b);
+        }
+
+        public double Perimeter()
+        {
+            return a + b + Gipotenuza();
+        }
+
+        public double Area()
+        {
+            return a * b / 2;
+        }
+
+        public string Info()
+        {
+            return "Прямокутний трикутник: a = " + a + ", b = " + b + ", c = " + Math.Round(Gipotenuza(), 2) + "\r\n" +
+                   "  Периметр = " + Math.Round(Perimeter(), 2) + "\r\n" +
+                   "  Площа = " + Math.Round(Area(), 2) + "\r\n";
+        }
+
+        public static Triangle operator ++(Triangle t)
+        {
+            return new Triangle { a = t.a + 1, b = t.b + 1 };
+        }
+
+        public static Triangle operator --(Triangle t)
+        {
+            return new Triangle { a = t.a - 1, b = t.b - 1 };
+        }
+    }
+
+    class Rectangle : Triangle
+    {
+        public new double Perimeter()
+        {
+            return 2 * (a + b);
+        }
+
+        public new double Area()
+        {
+            return a * b;
+        }
+
+        public new string Info()
+        {
+            return "Прямокутник: a = " + a + ", b = " + b + "\r\n" +
+                   "  Периметр = " + Math.Round(Perimeter(), 2) + "\r\n" +
+                   "  Площа = " + Math.Round(Area(), 2) + "\r\n";
+        }
+
+        public static Rectangle operator ++(Rectangle r)
+        {
+            return new Rectangle { a = r.a + 1, b = r.b + 1 };
+        }
+
+        public static Rectangle operator --(Rectangle r)
+        {
+            return new Rectangle { a = r.a - 1, b = r.b - 1 };
+        }
+    }
+}
+
+==================== Form1.cs ====================
+
+using System;
+using System.Windows.Forms;
+
+namespace WinFormsApp1
+{
+    public partial class Form1 : Form
+    {
+        Triangle t = new Triangle { a = 3, b = 4 };
+        Rectangle r = new Rectangle { a = 2, b = 5 };
+
+        TextBox textBox = new TextBox();
+        Button buttonT1 = new Button();
+        Button buttonT2 = new Button();
+        Button buttonR1 = new Button();
+        Button buttonR2 = new Button();
+
+        public Form1()
+        {
+            InitializeComponent();
+
+            Text = "Трикутник і прямокутник";
+            Width = 480;
+            Height = 330;
+
+            textBox.Multiline = true;
+            textBox.ReadOnly = true;
+            textBox.Left = 20;
+            textBox.Top = 20;
+            textBox.Width = 420;
+            textBox.Height = 160;
+
+            buttonT1.Text = "Трикутник ++";
+            buttonT1.Left = 20;
+            buttonT1.Top = 200;
+            buttonT1.Width = 200;
+            buttonT1.Click += buttonT1_Click;
+
+            buttonT2.Text = "Трикутник --";
+            buttonT2.Left = 20;
+            buttonT2.Top = 240;
+            buttonT2.Width = 200;
+            buttonT2.Click += buttonT2_Click;
+
+            buttonR1.Text = "Прямокутник ++";
+            buttonR1.Left = 240;
+            buttonR1.Top = 200;
+            buttonR1.Width = 200;
+            buttonR1.Click += buttonR1_Click;
+
+            buttonR2.Text = "Прямокутник --";
+            buttonR2.Left = 240;
+            buttonR2.Top = 240;
+            buttonR2.Width = 200;
+            buttonR2.Click += buttonR2_Click;
+
+            Controls.Add(textBox);
+            Controls.Add(buttonT1);
+            Controls.Add(buttonT2);
+            Controls.Add(buttonR1);
+            Controls.Add(buttonR2);
+
+            ShowInfo();
+        }
+
+        void ShowInfo()
+        {
+            textBox.Text = t.Info() + "\r\n" + r.Info();
+        }
+
+        private void buttonT1_Click(object? sender, EventArgs e)
+        {
+            t++;
+            ShowInfo();
+        }
+
+        private void buttonT2_Click(object? sender, EventArgs e)
+        {
+            t--;
+            ShowInfo();
+        }
+
+        private void buttonR1_Click(object? sender, EventArgs e)
+        {
+            r++;
+            ShowInfo();
+        }
+
+        private void buttonR2_Click(object? sender, EventArgs e)
+        {
+            r--;
+            ShowInfo();
+        }
+    }
+}
